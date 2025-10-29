@@ -9,12 +9,14 @@ public class WorkoutTracker : MonoBehaviour
 
 
     private TMP_Text m_TimerText;
+    private ResultsManager m_ResultsManager;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         m_TimerText = GetComponentInChildren<TMP_Text>();
+        m_ResultsManager = GameObject.FindFirstObjectByType(typeof(ResultsManager)) as ResultsManager;
     }
 
     public void StartWorkout(int workoutType)
@@ -32,6 +34,7 @@ public class WorkoutTracker : MonoBehaviour
     public void EndWorkout()
     {
         m_IsRunning = false;
+        m_ResultsManager.DisplayResults(m_WorkoutType, m_RunTime);
     }
 
     // Update is called once per frame
