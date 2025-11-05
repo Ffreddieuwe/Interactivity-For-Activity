@@ -1,12 +1,14 @@
 using TMPro;
 using UnityEngine;
-using SimpleJSON;
+using UnityEngine.UI;
 
 public class ResultsManager : MonoBehaviour
 {
     private TMP_Text[] allText;
     private JSONHandler jsonhandler;
     public GameObject[] progressBars;
+    public GameObject[] upArrows;
+    public float staminaDuration;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,6 +18,11 @@ public class ResultsManager : MonoBehaviour
 
     public void DisplayResults(int exerciseType, float duration, int steps = 0)
     {
+        foreach (var item in upArrows)
+        {
+            item.GetComponent<Image>().color = new Color(255f, 255f, 255f, 0f);
+        }
+
         int seconds = (int)duration % 60;
         string secondString = seconds < 10 ? "0" + seconds : "" + seconds;
         float minutes = Mathf.Floor(duration / 60);
@@ -34,13 +41,32 @@ public class ResultsManager : MonoBehaviour
 
         JSONHandler.PlayerData currentData = jsonhandler.playerDataList.playerData[0];
 
-        //INSERT PROPAH LEVELLING UP HERE
+        currentData.Level = currentData.Level + (int)(seconds * 0.75f);
+        upArrows[0].GetComponent<Image>().color = new Color(255f, 255f, 255f, 255f);
 
-        currentData.Level = 2200;
-        currentData.Stamina = 1200;
-        currentData.Agility = 1000;
-        currentData.Strength = 1000;
-        currentData.Stability = 1400;
+        switch (exerciseType)
+        {
+            case 1:
+                currentData.Agility += seconds;
+                upArrows[2].GetComponent<Image>().color = new Color(255f, 255f, 255f, 255f);
+                break;
+            case 2:
+                currentData.Strength += seconds;
+                upArrows[3].GetComponent<Image>().color = new Color(255f, 255f, 255f, 255f);
+                break;
+            case 3:
+                currentData.Stability += seconds;
+                upArrows[4].GetComponent<Image>().color = new Color(255f, 255f, 255f, 255f);
+                break;
+            default:
+                break;
+        }
+
+        if (hours > 0 || minutes >= staminaDuration)
+        {
+            currentData.Stamina += 350;
+            upArrows[1].GetComponent<Image>().color = new Color(255f, 255f, 255f, 255f);
+        }
 
         allText[3].text = "Level: " + currentData.Level/1000;
         progressBars[0].GetComponent<RectTransform>().localScale = new Vector3((currentData.Level % 1000) / 1000f, 1, 1);
