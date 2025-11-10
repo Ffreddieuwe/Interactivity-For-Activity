@@ -41,13 +41,13 @@ public class ResultsManager : MonoBehaviour
 
         JSONHandler.PlayerData currentData = jsonhandler.playerDataList.playerData[0];
 
-        currentData.Level = currentData.Level + (int)(seconds * 0.75f);
+        currentData.Level = steps > 0 ? currentData.Level + (steps/3) : currentData.Level + (int)(seconds * 0.75f);
         upArrows[0].GetComponent<Image>().color = new Color(255f, 255f, 255f, 255f);
 
         switch (exerciseType)
         {
             case 1:
-                currentData.Agility += seconds;
+                currentData.Agility += steps / 3;
                 upArrows[2].GetComponent<Image>().color = new Color(255f, 255f, 255f, 255f);
                 break;
             case 2:

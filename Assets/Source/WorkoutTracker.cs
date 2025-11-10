@@ -8,14 +8,15 @@ public class WorkoutTracker : MonoBehaviour
     private int m_WorkoutType = -1;
 
 
-    private TMP_Text m_TimerText;
+    public GameObject m_TimerText;
     private ResultsManager m_ResultsManager;
+
+    public GameObject headerText;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        m_TimerText = GetComponentInChildren<TMP_Text>();
         m_ResultsManager = GameObject.FindFirstObjectByType(typeof(ResultsManager)) as ResultsManager;
     }
 
@@ -24,6 +25,15 @@ public class WorkoutTracker : MonoBehaviour
         m_IsRunning = true;
         m_RunTime = 0;
         m_WorkoutType = workoutType;
+
+        if (workoutType == 2)
+        {
+            headerText.GetComponentInChildren<TextMeshProUGUI>().text = "Weight Training";
+        }
+        else
+        {
+            headerText.GetComponentInChildren<TextMeshProUGUI>().text = "Core Workout";
+        }
     }
 
     public void TogglePauseWorkout()
@@ -57,6 +67,6 @@ public class WorkoutTracker : MonoBehaviour
 
         string timerString = hourString+ ":"+minuteString+":"+secondString;
 
-        m_TimerText.text = timerString;
+        m_TimerText.GetComponentInChildren<TextMeshProUGUI>().text = timerString;
     }
 }
