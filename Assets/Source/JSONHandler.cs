@@ -34,6 +34,14 @@ public class JSONHandler : MonoBehaviour
     public void UpdateJSON()
     {
         string strOutput = JsonUtility.ToJson(playerDataList);
-        File.WriteAllText(Application.dataPath+"/Data/PlayerData.json", strOutput);
+        if (!Application.isEditor)
+        {
+            string dataPath = Path.Combine(Application.persistentDataPath, "PlayerData.json");
+            File.WriteAllText(dataPath, strOutput);
+        }
+        else
+        {
+            File.WriteAllText(Application.dataPath + "/Data/PlayerData.json", strOutput);
+        }
     }
 }
