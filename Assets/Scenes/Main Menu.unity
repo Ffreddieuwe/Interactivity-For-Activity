@@ -4809,6 +4809,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 924125671}
+        m_TargetAssemblyTypeName: SpriteToggler, Assembly-CSharp
+        m_MethodName: SetInitialSprite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &823123666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5131,6 +5143,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 924125670}
+  - component: {fileID: 924125671}
   m_Layer: 0
   m_Name: Pause
   m_TagString: Untagged
@@ -5158,6 +5171,21 @@ RectTransform:
   m_AnchoredPosition: {x: -160, y: -372.14}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &924125671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924125669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96e17e16a26a16440bf486212c8b8ed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1584322141}
+  sprite1: {fileID: 6769481433252057217, guid: fac5a9b9e0bfc97469e6f138332d39cd, type: 3}
+  sprite2: {fileID: 115781960278598134, guid: 22199be78144a984ab785d52cf4a1135, type: 3}
 --- !u!1 &941556561
 GameObject:
   m_ObjectHideFlags: 0
@@ -6899,6 +6927,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1884702730}
+        m_TargetAssemblyTypeName: SpriteToggler, Assembly-CSharp
+        m_MethodName: ToggleSprite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1333302977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8033,6 +8073,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1884702730}
+        m_TargetAssemblyTypeName: SpriteToggler, Assembly-CSharp
+        m_MethodName: SetInitialSprite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1468579538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8698,6 +8750,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 924125671}
+        m_TargetAssemblyTypeName: SpriteToggler, Assembly-CSharp
+        m_MethodName: SetInitialSprite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1569842632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8821,6 +8885,18 @@ MonoBehaviour:
       - m_Target: {fileID: 113448181}
         m_TargetAssemblyTypeName: WorkoutTracker, Assembly-CSharp
         m_MethodName: TogglePauseWorkout
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 924125671}
+        m_TargetAssemblyTypeName: SpriteToggler, Assembly-CSharp
+        m_MethodName: ToggleSprite
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10740,6 +10816,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1884702729}
+  - component: {fileID: 1884702730}
   m_Layer: 0
   m_Name: Pause
   m_TagString: Untagged
@@ -10767,6 +10844,21 @@ RectTransform:
   m_AnchoredPosition: {x: -160, y: -372.14}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1884702730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884702728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96e17e16a26a16440bf486212c8b8ed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1333302974}
+  sprite1: {fileID: 6769481433252057217, guid: fac5a9b9e0bfc97469e6f138332d39cd, type: 3}
+  sprite2: {fileID: 115781960278598134, guid: 22199be78144a984ab785d52cf4a1135, type: 3}
 --- !u!1 &1906230165
 GameObject:
   m_ObjectHideFlags: 0
