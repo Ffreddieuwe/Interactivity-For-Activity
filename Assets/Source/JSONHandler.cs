@@ -28,6 +28,11 @@ public class JSONHandler : MonoBehaviour
 
     private void Start()
     {
+        ReadJSON();
+    }
+
+    public void ReadJSON()
+    {
         playerDataList = JsonUtility.FromJson<PlayerDataList>(textJSON.text);
     }
 

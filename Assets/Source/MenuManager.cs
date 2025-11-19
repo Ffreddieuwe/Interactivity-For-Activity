@@ -15,7 +15,7 @@ public class MenuManager : MonoBehaviour
 
     void Start()
     {
-        Canvas[] CanvasPlayerGUIs = FindObjectsOfType<Canvas>();
+        Canvas[] CanvasPlayerGUIs = FindObjectsByType<Canvas>(FindObjectsSortMode.None);
         foreach (Canvas CanvasPlayerGUI in CanvasPlayerGUIs)
         {
             switch (CanvasPlayerGUI.name)
