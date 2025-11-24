@@ -16,6 +16,8 @@ public class GameMenuManager : MonoBehaviour
     private JSONHandler jsonhandler;
     private JSONHandler.PlayerData yourStats;
 
+    public GameObject player;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -34,19 +36,27 @@ public class GameMenuManager : MonoBehaviour
         jsonhandler.ReadJSON();
         yourStats = jsonhandler.playerDataList.playerData[0];
 
+        int hp = yourStats.Level / 1000 + baseHP;
         statsText[0].GetComponent<TextMeshProUGUI>().text = "lvl." + yourStats.Level/1000;
-        statInfoText[0].GetComponent<TextMeshProUGUI>().text = (yourStats.Level / 1000 + baseHP) + " HP";
+        statInfoText[0].GetComponent<TextMeshProUGUI>().text = hp + " HP";
 
+        int ap = yourStats.Stamina / 1000 + baseAP;
         statsText[1].GetComponent<TextMeshProUGUI>().text = "lvl." + yourStats.Stamina/1000;
-        statInfoText[1].GetComponent<TextMeshProUGUI>().text = (yourStats.Stamina / 1000 + baseAP) + " Actions per turn";
+        statInfoText[1].GetComponent<TextMeshProUGUI>().text = ap + " Actions per turn";
 
-        statsText[2].GetComponent<TextMeshProUGUI>().text = "lvl." + yourStats.Agility/1000;
-        statInfoText[2].GetComponent<TextMeshProUGUI>().text = (yourStats.Level / 1000 + baseHP) + " HP";
+        float dodgeChance = (float)(yourStats.Agility / 1000) / 2 + baseDodgeChance;
+        float hitChance = (float)(yourStats.Agility / 1000) / 2 + baseHitChance;
+        statsText[2].GetComponent<TextMeshProUGUI>().text = "lvl." + yourStats.Strength/1000;
+        statInfoText[2].GetComponent<TextMeshProUGUI>().text = dodgeChance + "% Dodge chance, " + hitChance + "% Hit chance";
 
-        statsText[3].GetComponent<TextMeshProUGUI>().text = "lvl." + yourStats.Strength/1000;
-        statInfoText[3].GetComponent<TextMeshProUGUI>().text = ((float)(yourStats.Agility / 1000) / 2 + baseDodgeChance).ToString() + "% Dodge chance, " + ((float)(yourStats.Agility / 1000) / 2 + baseHitChance).ToString() + "% Hit chance";
+        int attackDMG = yourStats.Strength / 1000 + baseAttackDamage;
+        statsText[3].GetComponent<TextMeshProUGUI>().text = "lvl." + yourStats.Agility / 1000;
+        statInfoText[3].GetComponent<TextMeshProUGUI>().text = attackDMG + " HP";
 
+        int blockAmount = yourStats.Stability / 1000 + baseBlockAmount;
         statsText[4].GetComponent<TextMeshProUGUI>().text = "lvl." + yourStats.Stability/1000;
-        statInfoText[4].GetComponent<TextMeshProUGUI>().text = (yourStats.Stability / 1000 + baseBlockAmount) + " Block amount";
+        statInfoText[4].GetComponent<TextMeshProUGUI>().text = blockAmount + " Block amount";
+
+        player.GetComponent<PlayerScript>().InitStats(hp, ap, dodgeChance, hitChance, attackDMG, blockAmount);
     }
 }

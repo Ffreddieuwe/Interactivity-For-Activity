@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+using UnityEditor.EditorTools;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,11 +10,21 @@ public class GameManager : MonoBehaviour
     public GameObject LevelCompleteScreen;
     public GameObject GameOverScreen;
 
+    private PlayerScript playerScript;
+
+    public GameObject APText;
+    public GameObject PlayerBlockText;
+    public GameObject PlayerHPText;
+    public GameObject EnemyBlockText;
+    public GameObject EnemyHPText;
+    public GameObject TurnText;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         DisableAll();
         StartScreen.SetActive(true);
+        playerScript = GetComponentInParent<PlayerScript>();
     }
 
     // Update is called once per frame
@@ -30,6 +42,10 @@ public class GameManager : MonoBehaviour
     {
         DisableAll();
         GameplayScreen.SetActive(true);
+
+        APText.GetComponent<TextMeshProUGUI>().text = playerScript.GetStats().m_currentAP + "/" + playerScript.GetStats().m_maxAP;
+        PlayerBlockText.GetComponent<TextMeshProUGUI>().text = "0";
+        PlayerHPText.GetComponent<TextMeshProUGUI>().text = playerScript.GetStats().m_currentHP + "/" + playerScript.GetStats().m_maxHP;
     }
 
     public void LevelWon()
@@ -49,8 +65,6 @@ public class GameManager : MonoBehaviour
         DisableAll();
         StartScreen.SetActive(true);
     }
-
-
 
     private void DisableAll()
     {
