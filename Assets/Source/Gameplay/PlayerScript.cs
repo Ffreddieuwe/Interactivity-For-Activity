@@ -18,11 +18,7 @@ public class PlayerScript : MonoBehaviour
 
     public GameObject fillBar;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public int currentBlock;
 
     public void InitStats(int maxHP, int maxAP, float dodgeChance, float hitChance, int attackDamage, int blockAmount)
     {
@@ -34,6 +30,7 @@ public class PlayerScript : MonoBehaviour
         m_stats.m_hitChance = hitChance;
         m_stats.m_attackDamage = attackDamage;
         m_stats.m_blockAmount = blockAmount;
+        currentBlock = 0;
 
         UpdateHPFill();
     }
@@ -49,9 +46,13 @@ public class PlayerScript : MonoBehaviour
         return m_stats;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void NewTurn()
     {
-        
+        m_stats.m_currentAP = m_stats.m_maxAP;
+    }
+
+    public void ActionUsed()
+    {
+        m_stats.m_currentAP--;
     }
 }
