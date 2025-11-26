@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
 public class JSONHandler : MonoBehaviour
 {
     public TextAsset textJSON;
+    public TextAsset enemyJSON;
 
     [System.Serializable]
     public class PlayerData
@@ -24,7 +23,14 @@ public class JSONHandler : MonoBehaviour
         public PlayerData[] playerData;
     }
 
+    [System.Serializable]
+    public class EnemyDataList
+    {
+        public PlayerData[] enemyData;
+    }
+
     public PlayerDataList playerDataList = new PlayerDataList();
+    public EnemyDataList enemyDataList = new EnemyDataList();
 
     private void Start()
     {
@@ -34,6 +40,7 @@ public class JSONHandler : MonoBehaviour
     public void ReadJSON()
     {
         playerDataList = JsonUtility.FromJson<PlayerDataList>(textJSON.text);
+        enemyDataList = JsonUtility.FromJson<EnemyDataList> (enemyJSON.text);
     }
 
     public void UpdateJSON()

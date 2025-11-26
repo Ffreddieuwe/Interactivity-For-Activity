@@ -1,23 +1,35 @@
 using UnityEngine;
 using TMPro;
-using UnityEditor.EditorTools;
 
 public class LevelComplete : MonoBehaviour
 {
-    public GameObject GameManager;
+    [SerializeField]
+    private GameObject GameManager;
     private GameManager.RunStats stats = new GameManager.RunStats();
 
-    public GameObject RemainingHPText;
-    public GameObject ActionsTakenText;
-    public GameObject DamageDealtText;
-    public GameObject AttacksDodgedText;
-    public GameObject DamageBlockedText;
+    // LEVEL COMPLETE SCREEN TEXT
+    [SerializeField]
+    private GameObject RemainingHPText;
+    [SerializeField]
+    private GameObject ActionsTakenText;
+    [SerializeField]
+    private GameObject DamageDealtText;
+    [SerializeField]
+    private GameObject AttacksDodgedText;
+    [SerializeField]
+    private GameObject DamageBlockedText;
 
-    public GameObject LevelsClearedText;
-    public GameObject TotalActionsText;
-    public GameObject TotalDamageText;
-    public GameObject TotalAttacksDodged;
-    public GameObject TotalDamageBlockedText;
+    // GAME OVER SCREEN TEXT
+    [SerializeField]
+    private GameObject LevelsClearedText;
+    [SerializeField]
+    private GameObject TotalActionsText;
+    [SerializeField]
+    private GameObject TotalDamageText;
+    [SerializeField]
+    private GameObject TotalAttacksDodged;
+    [SerializeField]
+    private GameObject TotalDamageBlockedText;
 
     public void roundWonValues()
     {
