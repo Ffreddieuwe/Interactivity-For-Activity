@@ -46,12 +46,12 @@ public class GameMenuManager : MonoBehaviour
 
         float dodgeChance = (float)(yourStats.Agility / 1000) / 2 + baseDodgeChance;
         float hitChance = (float)(yourStats.Agility / 1000) / 2 + baseHitChance;
-        statsText[2].GetComponent<TextMeshProUGUI>().text = "lvl." + yourStats.Strength/1000;
+        statsText[2].GetComponent<TextMeshProUGUI>().text = "lvl." + yourStats.Agility/1000;
         statInfoText[2].GetComponent<TextMeshProUGUI>().text = dodgeChance + "% Dodge chance, " + hitChance + "% Hit chance";
 
         int attackDMG = yourStats.Strength / 1000 + baseAttackDamage;
-        statsText[3].GetComponent<TextMeshProUGUI>().text = "lvl." + yourStats.Agility / 1000;
-        statInfoText[3].GetComponent<TextMeshProUGUI>().text = attackDMG + " HP";
+        statsText[3].GetComponent<TextMeshProUGUI>().text = "lvl." + yourStats.Strength / 1000;
+        statInfoText[3].GetComponent<TextMeshProUGUI>().text = attackDMG + " Attack damage";
 
         int blockAmount = yourStats.Stability / 1000 + baseBlockAmount;
         statsText[4].GetComponent<TextMeshProUGUI>().text = "lvl." + yourStats.Stability/1000;

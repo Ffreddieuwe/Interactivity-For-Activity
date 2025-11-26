@@ -33,6 +33,10 @@ public class GameManager : MonoBehaviour
     public GameObject EnemyHPText;
     public GameObject TurnText;
     public GameObject InfoText;
+    public GameObject AttackButton;
+    public GameObject BlockButton;
+    public GameObject ContinueButton;
+    public GameObject EndTurnButton;
     //
 
     private PlayerScript playerScript;
@@ -43,6 +47,8 @@ public class GameManager : MonoBehaviour
     public int TEMP_EnemyBlock;
     public int TEMP_EnemyHP;
     public int TEMP_EnemyMaxHP;
+
+    public float EnemyActionTimer;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -56,7 +62,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (!playerTurn)
+        {
+            EnemyActionTimer += Time.deltaTime;
+        }
     }
 
     public void ReturnToMenu()
@@ -69,6 +78,12 @@ public class GameManager : MonoBehaviour
         DisableAll();
         GameplayScreen.SetActive(true);
 
+        AttackButton.SetActive(true);
+        BlockButton.SetActive(true);
+        ContinueButton.SetActive(false);
+        EndTurnButton.SetActive(false);
+
+        playerScript.NewTurn();
         APText.GetComponent<TextMeshProUGUI>().text = playerScript.GetStats().m_currentAP + "/" + playerScript.GetStats().m_maxAP;
         PlayerBlockText.GetComponent<TextMeshProUGUI>().text = "0";
         PlayerHPText.GetComponent<TextMeshProUGUI>().text = playerScript.GetStats().m_currentHP + "/" + playerScript.GetStats().m_maxHP;
@@ -155,7 +170,10 @@ public class GameManager : MonoBehaviour
             {
                 playerScript.currentBlock = 0;
                 totalStats.LevelsCleared++;
-                LevelWon();
+                AttackButton.SetActive(false);
+                BlockButton.SetActive(false);
+                EndTurnButton.SetActive(false);
+                ContinueButton.SetActive(true);
             }
         }
         else
@@ -170,8 +188,9 @@ public class GameManager : MonoBehaviour
 
         if (playerScript.GetStats().m_currentAP <= 0)
         {
-            playerTurn = false;
-            InfoText.GetComponent<TextMeshProUGUI>().text = "Enemy Turn";
+            EndTurnButton.SetActive(true);
+            AttackButton.SetActive(false);
+            BlockButton.SetActive(false);
         }
     }
 
@@ -192,8 +211,17 @@ public class GameManager : MonoBehaviour
 
         if (playerScript.GetStats().m_currentAP <= 0)
         {
-            playerTurn = false;
-            InfoText.GetComponent<TextMeshProUGUI>().text = "Enemy Turn";
+            EndTurnButton.SetActive(true);
+            AttackButton.SetActive(false);
+            BlockButton.SetActive(false);
         }
+    }
+
+    public void EndTurn()
+    {
+        InfoText.GetComponent<TextMeshProUGUI>().text = "Enemy Turn";
+        EndTurnButton.SetActive(false);
+        playerTurn = false;
+        EnemyActionTimer = 0f;
     }
 }
