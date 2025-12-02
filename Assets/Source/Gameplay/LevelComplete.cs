@@ -7,6 +7,9 @@ public class LevelComplete : MonoBehaviour
     private GameObject GameManager;
     private GameManager.RunStats stats = new GameManager.RunStats();
 
+    [SerializeField]
+    private AudioManager audioManager;
+
     // LEVEL COMPLETE SCREEN TEXT
     [SerializeField]
     private GameObject RemainingHPText;
@@ -33,6 +36,7 @@ public class LevelComplete : MonoBehaviour
 
     public void roundWonValues()
     {
+        audioManager.PlayLevelComplete();
         stats = GameManager.GetComponent<GameManager>().roundStats;
 
         RemainingHPText.GetComponent<TextMeshProUGUI>().text = GameManager.GetComponent<PlayerScript>().GetStats().m_currentHP.ToString();
@@ -44,6 +48,7 @@ public class LevelComplete : MonoBehaviour
 
     public void gameOverValues()
     {
+        audioManager.PlayLevelLost();
         stats = GameManager.GetComponent<GameManager>().totalStats;
 
         LevelsClearedText.GetComponent<TextMeshProUGUI>().text = stats.LevelsCleared.ToString();

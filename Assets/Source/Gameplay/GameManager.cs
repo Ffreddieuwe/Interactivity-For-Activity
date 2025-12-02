@@ -50,6 +50,9 @@ public class GameManager : MonoBehaviour
     GameObject m_healText;
     private bool m_healCharge;
 
+    [SerializeField]
+    private AudioManager m_audioManager;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -153,6 +156,7 @@ public class GameManager : MonoBehaviour
 
         if (playerStats.m_hitChance > Random.Range(0.0f, 100.0f))
         {
+            m_audioManager.PlayHit();
             int damageToDeal = playerStats.m_attackDamage;
             bool crit = false;
 
@@ -213,6 +217,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            m_audioManager.PlayMiss();
             SetInfoText("Attack Missed!");
         }
 
@@ -317,6 +322,7 @@ public class GameManager : MonoBehaviour
 
         if (enemyStats.m_currentBlock < enemyStats.m_blockAmount || enemyStats.m_currentBlock < playerStats.m_attackDamage)
         {
+            m_audioManager.PlayBlock();
             enemyScript.SetBlock(enemyStats.m_currentBlock + enemyStats.m_blockAmount);
             SetInfoText("Enemy Gained " + enemyStats.m_blockAmount + " Block");
             enemyScript.UseAction();
@@ -332,6 +338,7 @@ public class GameManager : MonoBehaviour
 
         if (50f > Random.Range(0.0f, 100.0f))
         {
+            m_audioManager.PlayBlock();
             SetInfoText("Enemy Gained " + enemyStats.m_blockAmount + " Block");
             enemyScript.SetBlock(enemyStats.m_currentBlock + enemyStats.m_blockAmount);
         }
@@ -349,12 +356,14 @@ public class GameManager : MonoBehaviour
         {
             if (playerStats.m_dodgeChance > Random.Range(0.0f, 100.0f))
             {
+                m_audioManager.PlayMiss();
                 SetInfoText("You Dodged the Attack!");
                 roundStats.AttacksDodged++;
                 totalStats.AttacksDodged++;
                 return;
             }
 
+            m_audioManager.PlayHit();
             int damageToDeal = enemyStats.m_attackDamage;
 
             if (playerStats.m_currentBlock > 0)
@@ -392,6 +401,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            m_audioManager.PlayMiss();
             SetInfoText("Enemy Attack Missed!");
         }
     }
