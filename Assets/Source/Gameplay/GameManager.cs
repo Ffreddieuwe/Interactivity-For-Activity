@@ -53,6 +53,14 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private AudioManager m_audioManager;
 
+    [SerializeField]
+    private GameObject m_player;
+    private Animator m_playerAnimator;
+
+    [SerializeField]
+    private GameObject m_enemy;
+    private Animator m_enemyAnimator;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -63,6 +71,8 @@ public class GameManager : MonoBehaviour
         enemyScript = GetComponentInParent<EnemyScript>();
         levelComplete = LevelCompleteScreen.GetComponent<LevelComplete>();
         totalStats.LevelsCleared = 0;
+        m_playerAnimator = m_player.GetComponent<Animator>();
+        m_enemyAnimator = m_enemy.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -154,8 +164,11 @@ public class GameManager : MonoBehaviour
         PlayerScript.GameplayStats playerStats = playerScript.GetStats();
         EnemyScript.EnemyStats enemyStats = enemyScript.GetStats();
 
+        m_playerAnimator.SetTrigger("Attack");
+
         if (playerStats.m_hitChance > Random.Range(0.0f, 100.0f))
         {
+            m_enemyAnimator.SetTrigger("Hit");
             m_audioManager.PlayHit();
             int damageToDeal = playerStats.m_attackDamage;
             bool crit = false;
@@ -352,10 +365,13 @@ public class GameManager : MonoBehaviour
 
     private void EnemyAttack(EnemyScript.EnemyStats enemyStats, PlayerScript.GameplayStats playerStats)
     {
+        m_enemyAnimator.SetTrigger("Attack");
+
         if (enemyStats.m_hitChance > Random.Range(0.0f, 100.0f))
         {
             if (playerStats.m_dodgeChance > Random.Range(0.0f, 100.0f))
             {
+                m_playerAnimator.SetTrigger("Dodge");
                 m_audioManager.PlayMiss();
                 SetInfoText("You Dodged the Attack!");
                 roundStats.AttacksDodged++;
@@ -363,6 +379,7 @@ public class GameManager : MonoBehaviour
                 return;
             }
 
+            m_playerAnimator.SetTrigger("Hit");
             m_audioManager.PlayHit();
             int damageToDeal = enemyStats.m_attackDamage;
 
@@ -401,6 +418,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            m_playerAnimator.SetTrigger("Dodge");
             m_audioManager.PlayMiss();
             SetInfoText("Enemy Attack Missed!");
         }
