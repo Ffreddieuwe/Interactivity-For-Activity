@@ -162,6 +162,6 @@ public class LeaderboardManager : MonoBehaviour
             }
         }
 
-        YourStats.GetComponentInChildren<TextMeshProUGUI>().text = (playerIndex + 1) + ". You: " + selectedStatName + " " + allPlayerData[0].Level / 1000;
+        YourStats.GetComponentInChildren<TextMeshProUGUI>().text = (playerIndex + 1) + ". You: " + selectedStatName + " " + sortElements[playerIndex].statLevel / 1000;
     }
 }
